@@ -1,0 +1,100 @@
+import Controller.CandidatoPesquisaController;
+import Controller.CandidatosController;
+import Controller.PesquisaController;
+import Tabelas.CandidatoPesquisa;
+import Tabelas.Candidatos;
+import Tabelas.Pesquisa;
+
+public class Principal {
+	
+	public static void main(String[] args) {
+	}	
+	
+	public static void testeCandidatos() {
+		
+		Candidatos c1 = new Candidatos();
+		c1.setIdcandidatos(1);
+		c1.setNome("Lula");
+		c1.setPartido("PT");
+		
+		Candidatos c2 = new Candidatos();
+		c2.setIdcandidatos(2);
+		c2.setNome("Bolsonaro");
+		c2.setPartido("PL");
+		
+		CandidatosController controller = new CandidatosController();
+		try {
+			controller.salvar(c1);
+			controller.salvar(c2);
+		} 
+		
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		for (Candidatos c : controller.listar()) {
+			System.out.println(c.toString());
+		}
+	}
+	
+public static void testePesquisa() {
+		
+		Pesquisa p1 = new Pesquisa();
+		p1.setDatapesquisa("01-09-2022");
+		p1.setInstitutopesquisa("DATA FOLHA");
+		
+		PesquisaController controller = new PesquisaController();
+		
+		try {
+		controller.salvar(p1);
+		} 
+		
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		for (Pesquisa p : controller.listar()) {
+			System.out.println(p.toString());
+		}
+	}
+	
+public static void CandidatoPesquisa() {
+	
+		
+		Candidatos c1 = new Candidatos();
+		c1.setIdcandidatos(1);
+		c1.setNome("Lula");
+		c1.setPartido("PT");
+	
+		Candidatos c2 = new Candidatos();
+		c2.setIdcandidatos(2);
+		c2.setNome("Bolsonaro");
+		c2.setPartido("PL");
+		
+		Pesquisa p1 = new Pesquisa();
+		p1.setDatapesquisa("01-09-2022");
+		p1.setInstitutopesquisa("DATA FOLHA");
+		
+		CandidatoPesquisa cp1 = new CandidatoPesquisa();
+		cp1.setIdcandidatoxpesquisa(1);
+		cp1.setCandidato(c1);
+		cp1.setPesquisa(p1);
+		cp1.setVotos(1012);
+		
+		CandidatoPesquisa cp2 = new CandidatoPesquisa();
+		cp2.setIdcandidatoxpesquisa(1);
+		cp2.setCandidato(c2);
+		cp2.setPesquisa(p1);
+		cp2.setVotos(704);
+		
+		
+		CandidatoPesquisaController controller = new CandidatoPesquisaController();
+		try {
+			controller.registrarVotos();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+}	
+		
+}		
+	
